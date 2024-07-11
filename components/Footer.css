@@ -1,0 +1,38 @@
+.banner {
+  height: 85px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  color: #fff;
+  width: 100%;
+  background-color: #201449;
+  bottom: 0;
+  left: 0;
+}
+
+.banner-content {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap; 
+}
+
+.banner-link {
+  text-decoration: none;
+  padding: 0.25em 0.5em;
+  display: block;
+  color: white;
+  --clr-accent: var(--clr-pink-light);
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
