@@ -1,0 +1,48 @@
+.form-step-container {
+    width: 100%;
+}
+
+.form-steps-meter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-steps-meter progress {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-radius: 3em
+}
+
+.form-steps-meter progress::-webkit-progress-bar {
+    background-color: #14141415;
+    border-radius: 3em
+}
+
+.form-steps-meter progress::-webkit-progress-value {
+    background-color: #b565ff;
+    border-radius: 3em;
+    transition: .5s;
+}
+
+.form-steps-meter progress::-moz-progress-bar {
+    background-color: #b565ff;
+    border-radius: 3em;
+    transition: .5s;
+}
+
+.form-steps-meter div {
+    position: relative;
+    bottom: 11px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 0px;
+    color: #141414;
+    font-size: 1rem;
+    font-weight: 500;
+}

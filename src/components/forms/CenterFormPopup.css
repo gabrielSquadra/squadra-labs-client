@@ -1,0 +1,64 @@
+.center-form-wrapper {
+    background-color: #f6f6f6d5;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px;
+}
+
+.center-form-wrapper header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.center-form-close-button {
+    background-color: #14141415;
+    border: 1px solid #14141400;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+}
+
+.center-form-close-button-icon {
+    position: absolute;
+    width: 22.5px;
+    height: 22.5px;
+    color: #535353;
+    transition: 0.5s;
+}
+
+.center-form-wrapper body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.center-form-wrapper footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+@media (hover: hover) {
+    .center-form-close-button:hover {
+        background-color: #b565ff;
+        cursor: pointer;
+    }
+
+    .center-form-close-button:hover .center-form-close-button-icon {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        color: #ffffff;
+    }
+}
