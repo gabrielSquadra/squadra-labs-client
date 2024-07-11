@@ -19,8 +19,11 @@ import dsIcon from "../assets/img/services/icon_ds_2.webp";
 import aerowiseLogo from '../assets/img/clients/client-aerowise.webp';
 import graphextLogo from '../assets/img/clients/client-graphext.webp';
 
+//COMPONENTS
+import DataMaturityQuiz from "../components/forms/DataMaturityQuiz";
 
-const Home = () => {
+const Home = ({ showPopup, hidePopup }) => {
+
   return (
     <div>
       {/* Navbar */}
@@ -46,6 +49,15 @@ const Home = () => {
                 <a href="/success-cases.pdf" target="_blank">
                   Cases
                 </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    showPopup(<DataMaturityQuiz hidePopup={hidePopup} />);
+                  }}
+                >
+                  Test
+                </button>
               </li>
             </ul>
           </div>

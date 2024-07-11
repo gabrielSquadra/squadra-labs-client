@@ -3,19 +3,23 @@ import './App.css'
 import Home from './pages/Home'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+//HOOKS
+import usePopup from "./hooks/usePopup";
 
 function App() {
 
+  const { Popup, showPopup, hidePopup, fixScroll } = usePopup();
 
   return (
-    <>
-        <Router>
+    <div className={`app-wrapper${fixScroll}`}>
+      <Router>
         <div>
-          <Home/>
+          <Home showPopup={showPopup} hidePopup={hidePopup} />
         </div>
-        </Router>
-    </>
-  )
+      </Router>
+      <Popup />
+    </div>
+  );
 }
 
 export default App
