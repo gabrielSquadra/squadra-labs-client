@@ -11,7 +11,7 @@ import python from "../assets/img/tools/logo-python.webp";
 import django from "../assets/img/tools/logo-django.webp";
 import powerbi from "../assets/img/tools/logo-powerbi.webp";
 import sigma from "../assets/img/tools/logo-sigma.webp";
-import cloudIcon from '../assets/img/services/icon_de_1.webp'
+import cloudIcon from '../assets/img/services/icon_de_1.webp';
 import ctlLogo from "../assets/img/clients/client-ctl.webp";
 import squadraLogo from "../assets/img/sq/isologo-trim.webp";
 import aiImage from "../assets/img/services/ai_image_lamp.webp";
@@ -23,6 +23,29 @@ import graphextLogo from '../assets/img/clients/client-graphext.webp';
 import DataMaturityQuiz from "../components/forms/DataMaturityQuiz";
 
 const Home = ({ showPopup, hidePopup }) => {
+const scrollToSection = (event, sectionId) => {
+  event.preventDefault();
+  const section = document.getElementById(sectionId);
+  if (section) {
+    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 10; // Duración en milisegundos
+    let start = null;
+
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const progressPercentage = Math.min(progress / duration, 1); // Asegurarse de no pasar el 100%
+      window.scrollTo(0, startPosition + distance * progressPercentage);
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }
+};
 
   return (
     <div>
@@ -40,10 +63,14 @@ const Home = ({ showPopup, hidePopup }) => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="#services">Services</Link>
+                <a href="#services" onClick={(e) => scrollToSection(e, 'services')}>
+                  Services
+                </a>
               </li>
               <li>
-                <Link to="#benefits">Benefits</Link>
+                <a href="#benefits" onClick={(e) => scrollToSection(e, 'benefits')}>
+                  Benefits
+                </a>
               </li>
               <li>
                 <a href="/success-cases.pdf" target="_blank">
@@ -228,12 +255,12 @@ const Home = ({ showPopup, hidePopup }) => {
                   Perla - CEO @Aerowise
                 </h3>
                 <p className="card-description text-sm">
-                  Our collaboration with Squadra Labs proved pivotal in
-                  developing the technology solutions we sought. Their expertise
-                  not only complemented our project's needs but also enhanced
-                  our overall capabilities, ensuring a successful outcome. We
-                  highly recommend Squadra to any firm looking to create
-                  cutting-edge technology tailored to their requirements.
+                  Our collaboration with Squadra Labs has been outstanding. They
+                  are a team of skilled professionals who have helped us
+                  leverage data to enhance our business processes and achieve
+                  better outcomes. We highly recommend Squadra to any firm
+                  looking to create cutting-edge technology tailored to their
+                  requirements.
                 </p>
               </div>
               <div className="card">
@@ -265,27 +292,6 @@ const Home = ({ showPopup, hidePopup }) => {
           </div>
         </section>
       </main>
-
-      <footer className="footer bg-dark">
-        <div className="container spacing">
-          <div className="footer-content">
-            <p className="footer-description">
-              Created with love by Squadra Labs
-            </p>
-            <div className="social-icons">
-              <a href="https://linkedin.com/in/marianoallevato" target="_blank">
-                <img src="" alt="LinkedIn" />
-              </a>
-              <a
-                href="https://github.com/marianoezequielallevato"
-                target="_blank"
-              >
-                <img alt="GitHub" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

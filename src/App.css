@@ -16,6 +16,11 @@
 *::-webkit-scrollbar-thumb {
   background-color: #b565ff;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
   --clr-purple-dark: #201449;
@@ -54,7 +59,6 @@ a {
 a.link-not-allowed {
   cursor: not-allowed;
 }
-
 a:hover,
 a:focus {
   background-color: var(--clr-accent);
@@ -230,7 +234,6 @@ section {
   margin: 0 8px;
   box-shadow: 0 0.5em 1em 0 var(--clr-gray-light);
 }
-
 .tools:before,
 .tools:after {
   position: absolute;
