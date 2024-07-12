@@ -109,6 +109,14 @@ section {
   font-weight: 200;
 }
 
+.navbar a:hover {
+  --clr-accent: var(--clr-purple-dark);
+  background-color: #201449;
+}
+
+.navbar .navbar-button:hover {
+  --clr-accent: var(--clr-purple-dark);
+}
 
 @media (max-width: 500px) {
   .navbar .container {
@@ -301,7 +309,7 @@ section {
   color: var(--clr-accent);
 }
 
-.spacing>*+* {
+.spacing > * + * {
   margin-top: 1rem;
 }
 
