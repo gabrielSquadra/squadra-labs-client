@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 //HOOKS
 import usePopup from "./hooks/usePopup";
-import Footer from '../components/Footer';
+import Footer from './components/layout/Footer';
 
 function App() {
 
