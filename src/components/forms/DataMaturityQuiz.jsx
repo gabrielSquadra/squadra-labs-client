@@ -1,25 +1,51 @@
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 // COMPONENTS
 import TextInput from "../inputs/TextInput";
 import ProgressMeter from "../ProgressMeter";
-
-import { IoMdClose } from "../../../node_modules/react-icons/io";
 
 import "./CenterFormPopup.css";
 
 const DataMaturityQuiz = ({ hidePopup }) => {
   const [stepState, setStepState] = useState(1);
   const formSteps = ["Datos Personales", "Madurez de Datos", "Resultado"];
-  const nextStep = () => {
-    setStepState(stepState < formSteps.length ? stepState + 1 : stepState);
+
+  const schema = yup.object({
+    fullName: yup.string().required(),
+    email: yup.string().email().required(),
+    position: yup.string().required(),
+    organization: yup.string().required(),
+  });
+
+  const { register, handleSubmit, formState, trigger, watch } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const { errors } = formState;
+
+  const isValid = async () => await trigger();
+
+  const nextStep = async () => {
+    const isValid = await trigger();
+    if (isValid) {
+      setStepState(stepState < formSteps.length ? stepState + 1 : stepState);
+    }
   };
   const backStep = () => {
     setStepState(stepState > 1 ? stepState - 1 : stepState);
   };
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
-    <form className="center-form-wrapper">
+    <form
+      className="center-form-wrapper"
+      onSubmit={() => handleSubmit(onSubmit())}
+    >
       <header>
         <ProgressMeter
           currentValue={stepState}
@@ -27,27 +53,50 @@ const DataMaturityQuiz = ({ hidePopup }) => {
           formSteps={formSteps}
         />
       </header>
-      <body>
-        <TextInput
-          label="Nombre completo"
-          type="text"
-          name="fullName"
-          labelInPlaceholder
-        />
-        <TextInput label="Email" type="text" name="email" labelInPlaceholder />
-        <TextInput
-          label="Cargo"
-          type="text"
-          name="position"
-          labelInPlaceholder
-        />
-        <TextInput
-          label="Organización"
-          type="text"
-          name="organization"
-          labelInPlaceholder
-        />
-      </body>
+      {stepState === 1 && (
+        <body>
+          <TextInput
+            label="Nombre completo"
+            type="text"
+            name="fullName"
+            error={errors.fullName}
+            register={register}
+            isValid={isValid}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Email"
+            type="text"
+            name="email"
+            error={errors.email}
+            register={register}
+            isValid={isValid}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Cargo"
+            type="text"
+            name="position"
+            error={errors.position}
+            register={register}
+            isValid={isValid}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Organización"
+            type="text"
+            name="organization"
+            error={errors.organization}
+            register={register}
+            isValid={isValid}
+            watch={watch}
+            labelInPlaceholder
+          />
+        </body>
+      )}
       <footer>
         {stepState === 1 && (
           <button className="center-form-button" onClick={() => hidePopup()}>
@@ -63,13 +112,20 @@ const DataMaturityQuiz = ({ hidePopup }) => {
             Atras
           </button>
         )}
-        <button
-          type="button"
-          className="center-form-button"
-          onClick={() => nextStep()}
-        >
-          Siguiente
-        </button>
+        {stepState < formSteps.length && (
+          <button
+            type="button"
+            className="center-form-button"
+            onClick={() => nextStep()}
+          >
+            Siguiente
+          </button>
+        )}
+        {stepState === formSteps.length && (
+          <button type="submit" className="center-form-button">
+            Confirmar
+          </button>
+        )}
       </footer>
     </form>
   );

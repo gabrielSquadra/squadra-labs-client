@@ -12,4 +12,27 @@
     line-height: 22px;
     padding: 6px 12px;
     color: #141414;
+    border: 2px solid #b565ff00;
+    transition: 0.5s;
+}
+
+.input::placeholder {
+    color: #14141481;
+    transition: 0.5s;
+}
+
+.input:focus {
+    border: 2px solid #b565ff;
+    background-color: #f6f6f67e;
+}
+
+@media (hover: hover) {
+    .input:hover {
+        border: 2px solid #b565ff;
+        background-color: #b565ff;
+        color: #f6f6f6;
+    }
+    .input:hover::placeholder {
+        color: #f6f6f6;
+    }
 }
