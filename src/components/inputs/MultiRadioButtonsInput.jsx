@@ -9,7 +9,9 @@ const MultiRadioButtonsInput = ({ question, name, error, register, watch }) => {
       </label>
       <div className="radio-buttons-row">
         <progress
-          className="radio-buttons-level-bar"
+          className={`radio-buttons-level-bar ${
+            error ? "radio-buttons-level-bar-error" : ""
+          }`}
           value={parseInt(watch(name)) + 1}
           max={5}
         ></progress>

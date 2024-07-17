@@ -20,18 +20,31 @@ const DataMaturityQuiz = ({ hidePopup }) => {
     "Excepteur sint occaecat cupidatat non proident. unt in culpa qui officia deserunt mollit anim id est laborum?",
   ]);
 
+  const quizRequirementsGenerator = () => {
+    const requirements = {};
+    for (let i = 0; i < questionsList.length; i++) {
+      requirements[`question-${i}`] = yup.string().required();
+    }
+    return requirements;
+  };
+
+  const quizRequirementsList =
+    stepState === 2 ? quizRequirementsGenerator() : {};
+
   const schema = yup.object({
     fullName: yup.string().required(),
     email: yup.string().email().required(),
     position: yup.string().required(),
     organization: yup.string().required(),
+    ...quizRequirementsList,
   });
 
-  const { register, handleSubmit, formState, trigger, watch } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, formState, trigger, watch } =
+    useForm({
+      resolver: yupResolver(schema),
+    });
 
-  const { errors } = formState;
+  const { errors  } = formState;
 
   const nextStep = async () => {
     const isValid = await trigger();
@@ -124,12 +137,13 @@ const DataMaturityQuiz = ({ hidePopup }) => {
         <>
           <div className="center-form-body">
             {questionsList.map((question, i) => {
+              const name = `question-${i}`;
               return (
                 <MultiRadioButtonsInput
-                  key={question + i}
+                  key={name}
                   question={question}
-                  name={`question-${i}`}
-                  error={errors.fullName}
+                  name={name}
+                  error={errors[name]}
                   register={register}
                   trigger={trigger}
                   watch={watch}
