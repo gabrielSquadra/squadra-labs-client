@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import azure from "../assets/img/tools/logo-azure.webp";
@@ -11,18 +12,48 @@ import python from "../assets/img/tools/logo-python.webp";
 import django from "../assets/img/tools/logo-django.webp";
 import powerbi from "../assets/img/tools/logo-powerbi.webp";
 import sigma from "../assets/img/tools/logo-sigma.webp";
-import cloudIcon from '../assets/img/services/icon_de_1.webp'
+import cloudIcon from "../assets/img/services/icon_de_1.webp";
 import ctlLogo from "../assets/img/clients/client-ctl.webp";
 import squadraLogo from "../assets/img/sq/isologo-trim.webp";
 import aiImage from "../assets/img/services/ai_image_lamp.webp";
 import dsIcon from "../assets/img/services/icon_ds_2.webp";
-import aerowiseLogo from '../assets/img/clients/client-aerowise.webp';
-import graphextLogo from '../assets/img/clients/client-graphext.webp';
+import aerowiseLogo from "../assets/img/clients/client-aerowise.webp";
+import graphextLogo from "../assets/img/clients/client-graphext.webp";
 
 //COMPONENTS
 import DataMaturityQuiz from "../components/forms/DataMaturityQuiz";
 
 const Home = ({ showPopup, hidePopup }) => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const scrollToSection = (event, sectionId) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const targetPosition =
+        section.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 10; // Duración en milisegundos
+      let start = null;
+
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const progressPercentage = Math.min(progress / duration, 1);
+        window.scrollTo(0, startPosition + distance * progressPercentage);
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
+    }
+  };
 
   return (
     <div>
@@ -37,17 +68,27 @@ const Home = ({ showPopup, hidePopup }) => {
           <div className="navbar-menu" role="navigation">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">{t("home")}</Link>
               </li>
               <li>
-                <Link to="#services">Services</Link>
+                <a
+                  href="#services"
+                  onClick={(e) => scrollToSection(e, "services")}
+                >
+                  {t("services")}
+                </a>
               </li>
               <li>
-                <Link to="#benefits">Benefits</Link>
+                <a
+                  href="#benefits"
+                  onClick={(e) => scrollToSection(e, "benefits")}
+                >
+                  {t("benefits")}
+                </a>
               </li>
               <li>
                 <a href="/success-cases.pdf" target="_blank">
-                  Cases
+                  {t("cases")}
                 </a>
               </li>
               <li>
@@ -56,10 +97,25 @@ const Home = ({ showPopup, hidePopup }) => {
                     showPopup(<DataMaturityQuiz hidePopup={hidePopup} />);
                   }}
                 >
-                  Test
+                  {t("test")}
                 </button>
               </li>
             </ul>
+          </div>
+          <div className="language-buttons">
+            <button
+              className="button-language"
+              style={{ borderRight: "solid 1px white" }}
+              onClick={() => changeLanguage("en")}
+            >
+              En
+            </button>
+            <button
+              className="button-language"
+              onClick={() => changeLanguage("es")}
+            >
+              Es
+            </button>
           </div>
         </div>
       </nav>
@@ -69,18 +125,16 @@ const Home = ({ showPopup, hidePopup }) => {
         <div className="container">
           <div className="hero-content spacing">
             <h1 className="text-xxl text-upper">
-              Empower your business with <span className="accent">data</span>
+              {t("empower_your_business")}{" "}
+              <span className="accent">{t("data")}</span>
             </h1>
-            <p className="hero-description">
-              We help organizations transform data into actionable insights by
-              implementing AI and Cloud architecture solutions
-            </p>
+            <p className="hero-description">{t("transform_data")}</p>
             <a
               href="https://calendly.com/mariano-allevato-squadra/30min"
               target="_blank"
               className="btn"
             >
-              Schedule a meeting
+              {t("schedule_meeting")}
             </a>
           </div>
         </div>
@@ -92,42 +146,38 @@ const Home = ({ showPopup, hidePopup }) => {
         <section className="services bg-light" id="services">
           <div className="container spacing">
             <h2 className="section-title text-xl text-upper text-center">
-              Our <span className="accent">Services</span>
+              {t("our")} <span className="accent">{t("services")}</span>
             </h2>
             <p className="section-description text-center">
-              We create data products and services that enable organizations to
-              unlock the power of their data and solve their business processes.
+              {t("services_description")}
             </p>
 
             <div className="card-container shadow">
               <div className="card">
-                <img src={cloudIcon} alt="Cloud Infrastructure design" />
+                <img src={cloudIcon} alt={t("cloud_infrastructure_design")} />
                 <h3 className="card-title text-left text-upper">
-                  Data Engineering
+                  {t("data_engineering")}
                 </h3>
                 <p className="card-description text-sm">
-                  Collect, store and analyze data with a robust cloud
-                  architecture.
+                  {t("data_engineering_description")}
                 </p>
               </div>
               <div className="card">
-                <img src={aiImage} alt="AI design" />
+                <img src={aiImage} alt={t("ai_design")} />
                 <h3 className="card-title text-left text-upper">
-                  Artificial Intelligence
+                  {t("artificial_intelligence")}
                 </h3>
                 <p className="card-description text-sm">
-                  Create intelligent data products and services to solve
-                  businesses processes.
+                  {t("artificial_intelligence_description")}
                 </p>
               </div>
               <div className="card">
-                <img src={dsIcon} alt="" />
+                <img src={dsIcon} alt={t("data_science")} />
                 <h3 className="card-title text-left text-upper">
-                  Data Science
+                  {t("data_science")}
                 </h3>
                 <p className="card-description text-sm">
-                  Make data-driven decisions by building predictive models to
-                  identify patterns and trends.
+                  {t("data_science_description")}
                 </p>
               </div>
             </div>
@@ -166,45 +216,34 @@ const Home = ({ showPopup, hidePopup }) => {
         <section className="benefits bg-secondary" id="benefits">
           <div className="container spacing">
             <h2 className="section-title text-xl text-upper text-center">
-              Our <span className="accent">Benefits</span>
+              {t("our")} <span className="accent">{t("benefits")}</span>
             </h2>
             <p className="section-description text-center">
-              By developing systems to ingest, transform and store data we can
-              later create custom analysis and AI products. Whether you need a
-              data-driven application, a machine learning model or a cloud data
-              platform, we specialize to deliver results that meet your specific
-              needs.
+              {t("benefits_description")}
             </p>
             <div className="card-container shadow-light">
               <div className="card bg-primary">
                 <h3 className="card-title text-left text-upper">
-                  Maximize Revenue
+                  {t("maximize_revenue")}
                 </h3>
                 <p className="card-description text-sm">
-                  Predict customers behaviors to understand customer needs and
-                  preferences, personalize marketing efforts and increase
-                  customer acquisition.
+                  {t("maximize_revenue_description")}
                 </p>
               </div>
               <div className="card bg-primary">
                 <h3 className="card-title text-left text-upper">
-                  Empower Your Teams
+                  {t("empower_your_teams")}
                 </h3>
                 <p className="card-description text-sm">
-                  Enhance trust in data and ensure reliable measurement of KPIs,
-                  such as ROI, CAC, and MRR to empower data-driven
-                  decision-making across all departments, from marketing to
-                  finance.
+                  {t("empower_your_teams_description")}
                 </p>
               </div>
               <div className="card bg-primary">
                 <h3 className="card-title text-left text-upper">
-                  Understand Your Business
+                  {t("understand_your_business")}
                 </h3>
                 <p className="card-description text-sm">
-                  Integrate multiple data sources into the cloud to enable a
-                  comprehensive view of your customers, helping to identify
-                  opportunities that may otherwise go unnoticed.
+                  {t("understand_your_business_description")}
                 </p>
               </div>
             </div>
@@ -215,77 +254,41 @@ const Home = ({ showPopup, hidePopup }) => {
         <section className="testimonies" id="testimonies">
           <div className="container spacing">
             <h2 className="section-title text-xl text-upper text-center">
-              Our <span className="accent">Testimonies</span>
+              {t("our")} <span className="accent">{t("testimonies")}</span>
             </h2>
             <p className="section-description text-center">
-              Explore glowing recommendations from some of our key partners and
-              clients
+              {t("testimonies_description")}
             </p>
             <div className="card-container shadow">
               <div className="card">
                 <img src={aerowiseLogo} alt="Aerowise Private Aviation" />
                 <h3 className="card-title text-left text-upper">
-                  Perla - CEO @Aerowise
+                  {t("perla")}
                 </h3>
                 <p className="card-description text-sm">
-                  Our collaboration with Squadra Labs proved pivotal in
-                  developing the technology solutions we sought. Their expertise
-                  not only complemented our project's needs but also enhanced
-                  our overall capabilities, ensuring a successful outcome. We
-                  highly recommend Squadra to any firm looking to create
-                  cutting-edge technology tailored to their requirements.
+                  {t("perla_description")}
                 </p>
               </div>
               <div className="card">
                 <img src={graphextLogo} alt="Graphext" />
-                <h3 className="card-title text-upper">
-                  Victoriano - CEO @Graphext
-                </h3>
+                <h3 className="card-title text-upper">{t("victoriano")}</h3>
                 <p className="card-description text-sm">
-                  We love what the Squadra Labs team is doing! They have a deep
-                  understanding of how to leverage data to drive business
-                  outcomes. We highly recommend Squadra Labs to anyone looking
-                  to make their company more data-driven.
+                  {t("victoriano_description")}
                 </p>
               </div>
               <div className="card">
                 <img src={ctlLogo} alt="CTL Information Technology" />
                 <h3 className="card-title text-left text-upper">
-                  Juan Guido - CEO @CTL
+                  {t("juan_guido")}
                 </h3>
                 <p className="card-description text-sm">
-                  Squadra Labs was an excellent partner for our latest project.
-                  Their expertise in data integration complemented our strengths
-                  perfectly, and we collaborated closely to develop a solution
-                  that exceeded our expectations. We are eager to continue
-                  working with Squadra Labs and highly recommend their services.
+                  {t("juan_guido_description")}
                 </p>
               </div>
             </div>
           </div>
         </section>
       </main>
-
-      <footer className="footer bg-dark">
-        <div className="container spacing">
-          <div className="footer-content">
-            <p className="footer-description">
-              Created with love by Squadra Labs
-            </p>
-            <div className="social-icons">
-              <a href="https://linkedin.com/in/marianoallevato" target="_blank">
-                <img src="" alt="LinkedIn" />
-              </a>
-              <a
-                href="https://github.com/marianoezequielallevato"
-                target="_blank"
-              >
-                <img alt="GitHub" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

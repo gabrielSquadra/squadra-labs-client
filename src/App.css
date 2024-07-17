@@ -16,6 +16,16 @@
 *::-webkit-scrollbar-thumb {
   background-color: #b565ff;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
   --clr-purple-dark: #201449;
@@ -49,12 +59,12 @@ body {
 a {
   text-decoration: none;
   transition: 400ms linear;
+  border-radius: 15px;
 }
 
 a.link-not-allowed {
   cursor: not-allowed;
 }
-
 a:hover,
 a:focus {
   background-color: var(--clr-accent);
@@ -82,6 +92,9 @@ section {
   position: absolute;
 }
 
+.button-language{
+  cursor: pointer;
+}
 .navbar .container {
   display: flex;
   justify-content: space-between;
@@ -105,6 +118,14 @@ section {
   font-weight: 200;
 }
 
+.navbar a:hover {
+  --clr-accent: var(--clr-purple-dark);
+  background-color: #201448;
+}
+
+.navbar .navbar-button:hover {
+  --clr-accent: var(--clr-purple-dark);
+}
 
 @media (max-width: 500px) {
   .navbar .container {
@@ -176,6 +197,9 @@ section {
   box-shadow: 0 2em 4em -1.4em var(--clr-shadow);
   transition: transform 400ms ease;
   text-align: left;
+  border-radius: 22px;
+  background-color: white;
+  padding: 25px;
 }
 
 .card:hover {
@@ -217,6 +241,7 @@ section {
   display: flex;
   overflow: hidden;
   position: relative;
+  background-color: rgb(250, 255, 250);
 }
 
 .tools .tools-slide {
@@ -225,12 +250,17 @@ section {
   animation: slide 22s linear infinite;
 }
 
+.testimonies {
+  background-color: rgb(250, 255, 250);
+}
+
+
 .tools img {
   width: 180px;
   margin: 0 8px;
   box-shadow: 0 0.5em 1em 0 var(--clr-gray-light);
+  border-radius: 22px;
 }
-
 .tools:before,
 .tools:after {
   position: absolute;
@@ -254,6 +284,12 @@ section {
 /* ------------------ Footer  ------------------ */
 .footer {
   padding: 1em 0;
+}
+
+.language-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .footer .container {
@@ -298,7 +334,7 @@ section {
   color: var(--clr-accent);
 }
 
-.spacing>*+* {
+.spacing > * + * {
   margin-top: 1rem;
 }
 
@@ -354,8 +390,9 @@ section {
 }
 
 .bg-light {
-  background-color: #fafafa;
+  background-color: rgb(250,255, 250);
   color: var(--clr-purple-dark);
+
 }
 
 .bg-secondary {
