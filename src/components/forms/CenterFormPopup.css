@@ -38,7 +38,7 @@
     transition: 0.5s;
 }
 
-.center-form-wrapper body {
+.center-form-body {
     display: flex;
     flex-direction: column;
     justify-content: center;

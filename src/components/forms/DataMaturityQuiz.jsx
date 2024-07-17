@@ -26,26 +26,23 @@ const DataMaturityQuiz = ({ hidePopup }) => {
 
   const { errors } = formState;
 
-  const isValid = async () => await trigger();
-
   const nextStep = async () => {
     const isValid = await trigger();
     if (isValid) {
       setStepState(stepState < formSteps.length ? stepState + 1 : stepState);
     }
   };
+
   const backStep = () => {
     setStepState(stepState > 1 ? stepState - 1 : stepState);
   };
+
   const onSubmit = (data) => {
     console.log(data);
   };
 
   return (
-    <form
-      className="center-form-wrapper"
-      onSubmit={() => handleSubmit(onSubmit())}
-    >
+    <form className="center-form-wrapper" onSubmit={handleSubmit(onSubmit)}>
       <header>
         <ProgressMeter
           currentValue={stepState}
@@ -54,14 +51,14 @@ const DataMaturityQuiz = ({ hidePopup }) => {
         />
       </header>
       {stepState === 1 && (
-        <body>
+        <div className="center-form-body">
           <TextInput
             label="Nombre completo"
             type="text"
             name="fullName"
             error={errors.fullName}
             register={register}
-            isValid={isValid}
+            trigger={trigger}
             watch={watch}
             labelInPlaceholder
           />
@@ -71,7 +68,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
             name="email"
             error={errors.email}
             register={register}
-            isValid={isValid}
+            trigger={trigger}
             watch={watch}
             labelInPlaceholder
           />
@@ -81,7 +78,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
             name="position"
             error={errors.position}
             register={register}
-            isValid={isValid}
+            trigger={trigger}
             watch={watch}
             labelInPlaceholder
           />
@@ -91,15 +88,19 @@ const DataMaturityQuiz = ({ hidePopup }) => {
             name="organization"
             error={errors.organization}
             register={register}
-            isValid={isValid}
+            trigger={trigger}
             watch={watch}
             labelInPlaceholder
           />
-        </body>
+        </div>
       )}
       <footer>
         {stepState === 1 && (
-          <button className="center-form-button" onClick={() => hidePopup()}>
+          <button
+            className="center-form-button"
+            type="button"
+            onClick={hidePopup}
+          >
             Cancelar
           </button>
         )}
@@ -107,7 +108,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
           <button
             type="button"
             className="center-form-button"
-            onClick={() => backStep()}
+            onClick={backStep}
           >
             Atras
           </button>
@@ -116,7 +117,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
           <button
             type="button"
             className="center-form-button"
-            onClick={() => nextStep()}
+            onClick={nextStep}
           >
             Siguiente
           </button>

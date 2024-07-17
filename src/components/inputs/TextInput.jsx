@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import "./CustomInput.css";
 
 const TextInput = ({
@@ -9,24 +8,29 @@ const TextInput = ({
   labelInPlaceholder,
   error,
   register,
-  isValid,
+  trigger,
   watch,
 }) => {
-  useEffect(() => {
-    isValid();
-  }, [watch(name)]);
+  const handleBlur = () => {
+    trigger(name);
+  };
+
   return (
     <div className="input-wrapper">
       {!labelInPlaceholder && <label htmlFor={name}>{label ?? "Input"}</label>}
       <input
-        className="input"
+        className={`input ${
+          error !== undefined ? "input-error" : watch(name) && "input-success"
+        }`}
         type={type ?? "text"}
         name={name}
         id={name}
         placeholder={labelInPlaceholder ? label : "Input"}
         {...register(name)}
+        onBlur={handleBlur}
       />
     </div>
   );
 };
+
 export default TextInput;
