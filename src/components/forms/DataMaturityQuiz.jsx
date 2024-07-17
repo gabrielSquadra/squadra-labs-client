@@ -18,6 +18,10 @@ const DataMaturityQuiz = ({ hidePopup }) => {
     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat?",
     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
     "Excepteur sint occaecat cupidatat non proident. unt in culpa qui officia deserunt mollit anim id est laborum?",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat?",
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
+    "Excepteur sint occaecat cupidatat non proident. unt in culpa qui officia deserunt mollit anim id est laborum?",
   ]);
 
   const quizRequirementsGenerator = () => {
@@ -39,12 +43,11 @@ const DataMaturityQuiz = ({ hidePopup }) => {
     ...quizRequirementsList,
   });
 
-  const { register, handleSubmit, formState, trigger, watch } =
-    useForm({
-      resolver: yupResolver(schema),
-    });
+  const { register, handleSubmit, formState, trigger, watch } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const { errors  } = formState;
+  const { errors } = formState;
 
   const nextStep = async () => {
     const isValid = await trigger();
@@ -65,6 +68,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
   return (
     <form className="center-form-wrapper" onSubmit={handleSubmit(onSubmit)}>
       <header>
+        <h2 className="center-form-title">¡Test de maduración de datos!</h2>
         <ProgressMeter
           currentValue={stepState}
           maxValue={formSteps.length}
@@ -72,49 +76,47 @@ const DataMaturityQuiz = ({ hidePopup }) => {
         />
       </header>
       {stepState === 1 && (
-        <>
-          <div className="center-form-body">
-            <TextInput
-              label="Nombre completo"
-              type="text"
-              name="fullName"
-              error={errors.fullName}
-              register={register}
-              trigger={trigger}
-              watch={watch}
-              labelInPlaceholder
-            />
-            <TextInput
-              label="Email"
-              type="text"
-              name="email"
-              error={errors.email}
-              register={register}
-              trigger={trigger}
-              watch={watch}
-              labelInPlaceholder
-            />
-            <TextInput
-              label="Cargo"
-              type="text"
-              name="position"
-              error={errors.position}
-              register={register}
-              trigger={trigger}
-              watch={watch}
-              labelInPlaceholder
-            />
-            <TextInput
-              label="Organización"
-              type="text"
-              name="organization"
-              error={errors.organization}
-              register={register}
-              trigger={trigger}
-              watch={watch}
-              labelInPlaceholder
-            />
-          </div>
+        <div className="center-form-body">
+          <TextInput
+            label="Nombre completo"
+            type="text"
+            name="fullName"
+            error={errors.fullName}
+            register={register}
+            trigger={trigger}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Email"
+            type="text"
+            name="email"
+            error={errors.email}
+            register={register}
+            trigger={trigger}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Cargo"
+            type="text"
+            name="position"
+            error={errors.position}
+            register={register}
+            trigger={trigger}
+            watch={watch}
+            labelInPlaceholder
+          />
+          <TextInput
+            label="Organización"
+            type="text"
+            name="organization"
+            error={errors.organization}
+            register={register}
+            trigger={trigger}
+            watch={watch}
+            labelInPlaceholder
+          />
           <footer>
             <button
               className="center-form-button"
@@ -131,26 +133,24 @@ const DataMaturityQuiz = ({ hidePopup }) => {
               Siguiente
             </button>
           </footer>
-        </>
+        </div>
       )}
       {stepState === 2 && (
-        <>
-          <div className="center-form-body">
-            {questionsList.map((question, i) => {
-              const name = `question-${i}`;
-              return (
-                <MultiRadioButtonsInput
-                  key={name}
-                  question={question}
-                  name={name}
-                  error={errors[name]}
-                  register={register}
-                  trigger={trigger}
-                  watch={watch}
-                />
-              );
-            })}
-          </div>
+        <div className="center-form-body">
+          {questionsList.map((question, i) => {
+            const name = `question-${i}`;
+            return (
+              <MultiRadioButtonsInput
+                key={name}
+                question={question}
+                name={name}
+                error={errors[name]}
+                register={register}
+                trigger={trigger}
+                watch={watch}
+              />
+            );
+          })}
           <footer>
             <button
               type="button"
@@ -163,11 +163,11 @@ const DataMaturityQuiz = ({ hidePopup }) => {
               Confirmar
             </button>
           </footer>
-        </>
+        </div>
       )}
       {stepState === 3 && (
-        <>
-          <div className="center-form-body">Muchas Gracias!</div>
+        <div className="center-form-body">
+          Muchas Gracias!
           <footer>
             <button
               type="buttn"
@@ -177,7 +177,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
               Cerrar
             </button>
           </footer>
-        </>
+        </div>
       )}
     </form>
   );

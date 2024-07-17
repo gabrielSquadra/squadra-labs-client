@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./MultiRadioButtonsInput.css";
 
 const MultiRadioButtonsInput = ({ question, name, error, register, watch }) => {
@@ -22,10 +21,11 @@ const MultiRadioButtonsInput = ({ question, name, error, register, watch }) => {
             style={{
               color: i < parseInt(watch(name)) + 1 ? "#f6f6f6" : "#141414",
               transition: "0.5s",
+              userSelect: "none",
             }}
           >
             <input
-              className={`radio-button input-radio-${num} ${
+              className={`radio-button input-radio ${
                 error !== undefined
                   ? "input-error"
                   : watch(name) && "input-success"

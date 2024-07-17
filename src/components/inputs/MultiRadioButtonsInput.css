@@ -55,7 +55,8 @@
 }
 
 .radio-buttons-level-bar-error {
-border: solid 1px #FA8072;
+    border: solid 1px #FA8072;
+    animation: vibrate 0.3s linear;
 }
 
 .radio-buttons-level-bar::-webkit-progress-bar {
