@@ -46,6 +46,7 @@ const DataMaturityQuiz = ({ hidePopup }) => {
 
   const onSubmit = (data) => {
     console.log(data);
+    nextStep();
   };
 
   return (
@@ -58,100 +59,112 @@ const DataMaturityQuiz = ({ hidePopup }) => {
         />
       </header>
       {stepState === 1 && (
-        <div className="center-form-body">
-          <TextInput
-            label="Nombre completo"
-            type="text"
-            name="fullName"
-            error={errors.fullName}
-            register={register}
-            trigger={trigger}
-            watch={watch}
-            labelInPlaceholder
-          />
-          <TextInput
-            label="Email"
-            type="text"
-            name="email"
-            error={errors.email}
-            register={register}
-            trigger={trigger}
-            watch={watch}
-            labelInPlaceholder
-          />
-          <TextInput
-            label="Cargo"
-            type="text"
-            name="position"
-            error={errors.position}
-            register={register}
-            trigger={trigger}
-            watch={watch}
-            labelInPlaceholder
-          />
-          <TextInput
-            label="Organización"
-            type="text"
-            name="organization"
-            error={errors.organization}
-            register={register}
-            trigger={trigger}
-            watch={watch}
-            labelInPlaceholder
-          />
-        </div>
+        <>
+          <div className="center-form-body">
+            <TextInput
+              label="Nombre completo"
+              type="text"
+              name="fullName"
+              error={errors.fullName}
+              register={register}
+              trigger={trigger}
+              watch={watch}
+              labelInPlaceholder
+            />
+            <TextInput
+              label="Email"
+              type="text"
+              name="email"
+              error={errors.email}
+              register={register}
+              trigger={trigger}
+              watch={watch}
+              labelInPlaceholder
+            />
+            <TextInput
+              label="Cargo"
+              type="text"
+              name="position"
+              error={errors.position}
+              register={register}
+              trigger={trigger}
+              watch={watch}
+              labelInPlaceholder
+            />
+            <TextInput
+              label="Organización"
+              type="text"
+              name="organization"
+              error={errors.organization}
+              register={register}
+              trigger={trigger}
+              watch={watch}
+              labelInPlaceholder
+            />
+          </div>
+          <footer>
+            <button
+              className="center-form-button"
+              type="button"
+              onClick={hidePopup}
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              className="center-form-button"
+              onClick={nextStep}
+            >
+              Siguiente
+            </button>
+          </footer>
+        </>
       )}
       {stepState === 2 && (
-        <div className="center-form-body">
-          {questionsList.map((question, i) => {
-            return (
-              <MultiRadioButtonsInput
-                key={question + i}
-                question={question}
-                name={`question-${i}`}
-                error={errors.fullName}
-                register={register}
-                trigger={trigger}
-                watch={watch}
-              />
-            );
-          })}
-        </div>
+        <>
+          <div className="center-form-body">
+            {questionsList.map((question, i) => {
+              return (
+                <MultiRadioButtonsInput
+                  key={question + i}
+                  question={question}
+                  name={`question-${i}`}
+                  error={errors.fullName}
+                  register={register}
+                  trigger={trigger}
+                  watch={watch}
+                />
+              );
+            })}
+          </div>
+          <footer>
+            <button
+              type="button"
+              className="center-form-button"
+              onClick={backStep}
+            >
+              Atras
+            </button>{" "}
+            <button type="submit" className="center-form-button">
+              Confirmar
+            </button>
+          </footer>
+        </>
       )}
-      <footer>
-        {stepState === 1 && (
-          <button
-            className="center-form-button"
-            type="button"
-            onClick={hidePopup}
-          >
-            Cancelar
-          </button>
-        )}
-        {stepState > 1 && (
-          <button
-            type="button"
-            className="center-form-button"
-            onClick={backStep}
-          >
-            Atras
-          </button>
-        )}
-        {stepState < formSteps.length && (
-          <button
-            type="button"
-            className="center-form-button"
-            onClick={nextStep}
-          >
-            Siguiente
-          </button>
-        )}
-        {stepState === formSteps.length && (
-          <button type="submit" className="center-form-button">
-            Confirmar
-          </button>
-        )}
-      </footer>
+      {stepState === 3 && (
+        <>
+          <div className="center-form-body">Muchas Gracias!</div>
+          <footer>
+            <button
+              type="buttn"
+              className="center-form-button"
+              onClick={hidePopup}
+            >
+              Cerrar
+            </button>
+          </footer>
+        </>
+      )}
     </form>
   );
 };
