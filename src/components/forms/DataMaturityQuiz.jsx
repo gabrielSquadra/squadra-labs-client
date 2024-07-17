@@ -12,16 +12,13 @@ import MultiRadioButtonsInput from "../inputs/MultiRadioButtonsInput";
 
 const DataMaturityQuiz = ({ hidePopup }) => {
   const [stepState, setStepState] = useState(1);
-  const formSteps = ["Datos Personales", "Madurez de Datos", "Resultado"];
+  const formSteps = ["Datos Personales", "Test", "Resultado"];
   const [questionsList, setQuestionsList] = useState([
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat?",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
-    "Excepteur sint occaecat cupidatat non proident. unt in culpa qui officia deserunt mollit anim id est laborum?",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat?",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
-    "Excepteur sint occaecat cupidatat non proident. unt in culpa qui officia deserunt mollit anim id est laborum?",
+    "¿Qué tan frecuente es que no tenga los datos actualizados para realizar los análisis que necesitas?",
+    "¿Qué tan difícil es poder acceder a los datos de la organización? ¿Qué tan frecuente es que no pueda acceder a los datos de la organización por sí solo y necesite del equipo IT para poder resolver estos problemas?",
+    "Cuando observa los datos de su organización, ¿cuán frecuente es que haya dudas sobre si son correctos? (Actualizados, sin errores, sin valores anormales, sin faltantes)",
+    "Del 1 al 5, ¿qué tan dispersa se encuentra la información en su empresa? ¿Necesita revisar varios lugares y archivos para poder empezar a realizar un análisis?",
+    "¿Qué tan frecuente es en su organización, que se tomen decisiones basadas en datos?",
   ]);
 
   const quizRequirementsGenerator = () => {
@@ -137,6 +134,12 @@ const DataMaturityQuiz = ({ hidePopup }) => {
       )}
       {stepState === 2 && (
         <div className="center-form-body">
+          <p style={{textAlign: "center"}}>
+            Seleccione la opción correcta, donde 1 indica que es poco frecuente
+            y 5 que es muy frecuente en su organización. Al finalizar el
+            cuestionario, podrá ver el nivel de madurez de datos con el que
+            cuenta actualmente.
+          </p>
           {questionsList.map((question, i) => {
             const name = `question-${i}`;
             return (
