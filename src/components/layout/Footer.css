@@ -1,15 +1,13 @@
 .banner {
-  height: 85px; 
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: row;
+  flex-direction: column;
   color: #fff;
   width: 100%;
-  background-color: #201449;
+  background-color: #8b68ff5a;
   bottom: 0;
   left: 0;
+  height: auto;
 }
 
 .banner-content {
@@ -35,4 +33,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.social-media-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.instagram-post {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  flex-direction: row;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.linkedin-post {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  flex-direction: column;
 }
