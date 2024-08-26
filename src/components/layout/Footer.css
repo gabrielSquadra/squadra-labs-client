@@ -1,24 +1,14 @@
-.banner {
+.footer {
+  height: 100px;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: #fff;
-  width: 100%;
-  background-color: #8b68ff5a;
-  bottom: 0;
-  left: 0;
-  height: auto;
+  align-items: center;
 }
 
-.banner-content {
-  border-radius: 10px;
+.social-icon-row-pair {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  white-space: nowrap; 
+  color: white;
 }
 
 .banner-link {
@@ -29,35 +19,25 @@
   --clr-accent: var(--clr-pink-light);
 }
 
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
 .social-icons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.social-media-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.instagram-post {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 10px;
   flex-direction: row;
-  gap: 50px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 100px;
 }
 
-.linkedin-post {
+.footer-content {
+  border-radius: 10px;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
 }

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 //HOOKS
 import usePopup from "./hooks/usePopup";
+import Posts from './components/layout/Posts';
 import Footer from './components/layout/Footer';
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
       <Router>
         <div>
           <Home showPopup={showPopup} hidePopup={hidePopup} />
-          <Footer />
+          <Posts />
+          <Footer/>
         </div>
       </Router>
       <Popup />

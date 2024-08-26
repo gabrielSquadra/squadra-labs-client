@@ -58,6 +58,12 @@ const Home = ({ showPopup, hidePopup }) => {
     }
   };
 
+  const getDownloadLink = () => {
+    return i18n.language === "es"
+      ? "/casos-de-exito.pdf"
+      : "/success-cases.pdf";
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -71,10 +77,13 @@ const Home = ({ showPopup, hidePopup }) => {
           <div className="navbar-menu" role="navigation">
             <ul>
               <li>
-                <Link className="navbar-link" to="/">{t("home")}</Link>
+                <Link className="navbar-link" to="/">
+                  {t("home")}
+                </Link>
               </li>
               <li>
-                <a className="navbar-link"
+                <a
+                  className="navbar-link"
                   href="#services"
                   onClick={(e) => scrollToSection(e, "services")}
                 >
@@ -82,7 +91,8 @@ const Home = ({ showPopup, hidePopup }) => {
                 </a>
               </li>
               <li>
-                <a className="navbar-link"
+                <a
+                  className="navbar-link"
                   href="#benefits"
                   onClick={(e) => scrollToSection(e, "benefits")}
                 >
@@ -90,13 +100,18 @@ const Home = ({ showPopup, hidePopup }) => {
                 </a>
               </li>
               <li>
-                <a className="navbar-link" href="/success-cases.pdf" target="_blank">
+                <a
+                  className="navbar-link"
+                  href={getDownloadLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {t("cases")}
                 </a>
               </li>
               <li>
                 <a
-                 className="navbar-link"
+                  className="navbar-link"
                   onClick={() => {
                     showPopup(<DataMaturityQuiz hidePopup={hidePopup} />);
                   }}
@@ -162,7 +177,11 @@ const Home = ({ showPopup, hidePopup }) => {
 
             <div className="card-container shadow">
               <div className="card">
-                <img className="card-services-image" src={cloudIcon} alt={t("cloud_infrastructure_design")} />
+                <img
+                  className="card-services-image"
+                  src={cloudIcon}
+                  alt={t("cloud_infrastructure_design")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("data_engineering")}
                 </h3>
@@ -171,7 +190,11 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img className="card-services-image" src={aiImage} alt={t("ai_design")} />
+                <img
+                  className="card-services-image"
+                  src={aiImage}
+                  alt={t("ai_design")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("artificial_intelligence")}
                 </h3>
@@ -180,7 +203,11 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img className="card-services-image" src={dsIcon} alt={t("data_science")} />
+                <img
+                  className="card-services-image"
+                  src={dsIcon}
+                  alt={t("data_science")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("data_science")}
                 </h3>
@@ -270,7 +297,11 @@ const Home = ({ showPopup, hidePopup }) => {
             <div className="card-container shadow">
               <div className="card">
                 <div className="image-container">
-                <img src={aerowiseLogo} alt="Aerowise Private Aviation" style={{ width: '250px', height: 'auto' }} />
+                  <img
+                    src={aerowiseLogo}
+                    alt="Aerowise Private Aviation"
+                    style={{ width: "250px", height: "auto" }}
+                  />
                 </div>
                 <h3 className="card-title text-left text-upper">
                   {t("perla")}
@@ -280,14 +311,22 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img className="card-clients-image" src={graphextLogo} alt="Graphext" />
+                <img
+                  className="card-clients-image"
+                  src={graphextLogo}
+                  alt="Graphext"
+                />
                 <h3 className="card-title text-upper">{t("victoriano")}</h3>
                 <p className="card-description text-sm">
                   {t("victoriano_description")}
                 </p>
               </div>
               <div className="card">
-                <img className="card-clients-image" src={ctlLogo} alt="CTL Information Technology" />
+                <img
+                  className="card-clients-image"
+                  src={ctlLogo}
+                  alt="CTL Information Technology"
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("juan_guido")}
                 </h3>

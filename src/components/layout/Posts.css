@@ -1,0 +1,36 @@
+.posts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  width: 100%;
+  background-color:rgb(250, 255, 250);
+  bottom: 0;
+  left: 0;
+  height: auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+.linkedin-posts-title{
+  color: #111111;
+  margin-left: 85px;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.social-media-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.linkedin-post {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+}
