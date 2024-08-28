@@ -288,8 +288,8 @@ const Home = ({ showPopup, hidePopup }) => {
         {/* Clients and Partners */}
         <section className="testimonies" id="testimonies">
           <div className="container spacing">
-            <h2 className="section-title text-xl text-upper text-center">
-              {t("our")} <span className="accent">{t("testimonies")}</span>
+            <h2 className="main-section-title">
+            <p className="title-first-word">{t("our")}</p> <span className="accent">{t("testimonies")}</span>
             </h2>
             <p className="section-description text-center">
               {t("testimonies_description")}

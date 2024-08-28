@@ -69,8 +69,8 @@ const Posts = () => {
             }}
           >
             <LinkedInEmbed
-              url="https://www.linkedin.com/embed/feed/update/urn:li:share:7166531575398973440"
-              postUrl="https://www.linkedin.com/posts/squadra-labs_en-squadra-labs-sabemos-que-muchas-activity-7204978078383587329-jryY?utm_source=share&utm_medium=member_desktop"
+              url="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7219778919191740416"
+              postUrl="https://www.linkedin.com/posts/squadra-labs_squadralabs-innovaciaejn-coworking-activity-7223761765262589952-VvVC?utm_source=share&utm_medium=member_desktop"
               width={420}
               height={670}
             />

@@ -13,7 +13,7 @@
 }
 
 .title-first-word {
-  color: #111111;
+  color: var(--clr-purple-dark);
 }
 
 .main-section-title {
