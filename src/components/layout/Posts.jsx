@@ -1,9 +1,5 @@
 import React from "react";
 import "./Posts.css";
-import { Link } from "react-router-dom";
-import { FaLinkedin } from "react-icons/fa6";
-import { MdAlternateEmail } from "react-icons/md";
-import { InstagramEmbed } from "react-social-media-embed";
 import { LinkedInEmbed } from "react-social-media-embed";
 import { useTranslation } from "react-i18next";
 
@@ -12,9 +8,20 @@ const Posts = () => {
   return (
     <>
       <div className="posts">
-        <h2 className="section-title text-xl text-upper text-center">
-          <span className="accent">{t("posts")}</span>
+        <h2 className="main-section-title">
+          {i18n.language === "es" ? (
+            <>
+              <p className="title-first-word">{t("posts")}</p>
+              <span className="accent">{t("featured")}</span>
+            </>
+          ) : (
+            <>
+              <p className="title-first-word">{t("featured")}</p>
+              <span className="accent">{t("posts")}</span>
+            </>
+          )}
         </h2>
+
         <div className="social-media-section">
           <div
             style={{
