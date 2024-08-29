@@ -1,26 +1,14 @@
-.banner {
-  height: 85px; 
+.footer {
+  height: 100px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  flex-direction: row;
-  color: #fff;
-  width: 100%;
-  background-color: #201449;
-  bottom: 0;
-  left: 0;
 }
 
-.banner-content {
-  border-radius: 10px;
+.social-icon-row-pair {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  white-space: nowrap; 
+  color: white;
 }
 
 .banner-link {
@@ -31,8 +19,25 @@
   --clr-accent: var(--clr-pink-light);
 }
 
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
 .social-icons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 100px;
+}
+
+.footer-content {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
 }

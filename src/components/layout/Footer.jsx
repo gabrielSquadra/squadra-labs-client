@@ -1,37 +1,37 @@
 import React from "react";
+import linkedin from "../../assets/icons/email.svg";
+import github from "../../assets/icons/linkedin.svg";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import { FaLinkedin } from "react-icons/fa6";
-import { MdAlternateEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="banner">
-      <div className="banner-content">
-        <div className="social-icons">
-          <Link
-            className="banner-link"
-            to="https://linkedin.com/in/marianoallevato"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin alt="LinkedIn" />
-            <p>Linkedin</p>  
-          </Link>
-        </div>
-        <div className="social-icons">
-          <Link
-            className="banner-link"
-            to="mailto:info@squadralabs.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MdAlternateEmail alt="GitHub" />
-          <p>InfoEmail</p>  
-          </Link>
+    <footer className="footer">
+      <div className="container spacing">
+        <div className="footer-content">
+          <div className="social-icons">
+            <div className="social-icon-row-pair">
+              <p> InfoEmail </p>
+              <Link
+                to="https://linkedin.com/in/marianoallevato"
+                target="_blank"
+              >
+                <img className="icon" src={linkedin} alt="LinkedIn" />
+              </Link>
+            </div>
+            <div className="social-icon-row-pair">
+              <p> Linkedin </p>
+              <Link
+                to="https://github.com/marianoezequielallevato"
+                target="_blank"
+              >
+                <img className="icon" src={github} alt="GitHub" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

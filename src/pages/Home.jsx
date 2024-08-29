@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -25,8 +26,10 @@ import DataMaturityQuiz from "../components/forms/DataMaturityQuiz";
 
 const Home = ({ showPopup, hidePopup }) => {
   const { t, i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   const changeLanguage = (lng) => {
+    setSelectedLanguage(lng);
     i18n.changeLanguage(lng);
   };
 
@@ -55,6 +58,12 @@ const Home = ({ showPopup, hidePopup }) => {
     }
   };
 
+  const getDownloadLink = () => {
+    return i18n.language === "es"
+      ? "/casos-de-exito.pdf"
+      : "/success-cases.pdf";
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -68,10 +77,13 @@ const Home = ({ showPopup, hidePopup }) => {
           <div className="navbar-menu" role="navigation">
             <ul>
               <li>
-                <Link to="/">{t("home")}</Link>
+                <Link className="navbar-link" to="/">
+                  {t("home")}
+                </Link>
               </li>
               <li>
                 <a
+                  className="navbar-link"
                   href="#services"
                   onClick={(e) => scrollToSection(e, "services")}
                 >
@@ -80,6 +92,7 @@ const Home = ({ showPopup, hidePopup }) => {
               </li>
               <li>
                 <a
+                  className="navbar-link"
                   href="#benefits"
                   onClick={(e) => scrollToSection(e, "benefits")}
                 >
@@ -87,34 +100,44 @@ const Home = ({ showPopup, hidePopup }) => {
                 </a>
               </li>
               <li>
-                <a href="/success-cases.pdf" target="_blank">
+                <a
+                  className="navbar-link"
+                  href={getDownloadLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {t("cases")}
                 </a>
               </li>
               <li>
-                <button
+                <a
+                  className="navbar-link"
                   onClick={() => {
                     showPopup(<DataMaturityQuiz hidePopup={hidePopup} />);
                   }}
                 >
                   {t("test")}
-                </button>
+                </a>
               </li>
             </ul>
           </div>
           <div className="language-buttons">
             <button
-              className="button-language"
-              style={{ borderRight: "solid 1px white" }}
+              className={`button-language ${
+                selectedLanguage === "en" ? "selected" : ""
+              }`}
+              style={{ borderRight: "solid 0.5px white" }}
               onClick={() => changeLanguage("en")}
             >
-              En
+              EN
             </button>
             <button
-              className="button-language"
+              className={`button-language ${
+                selectedLanguage === "es" ? "selected" : ""
+              }`}
               onClick={() => changeLanguage("es")}
             >
-              Es
+              ES
             </button>
           </div>
         </div>
@@ -154,7 +177,11 @@ const Home = ({ showPopup, hidePopup }) => {
 
             <div className="card-container shadow">
               <div className="card">
-                <img src={cloudIcon} alt={t("cloud_infrastructure_design")} />
+                <img
+                  className="card-services-image"
+                  src={cloudIcon}
+                  alt={t("cloud_infrastructure_design")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("data_engineering")}
                 </h3>
@@ -163,7 +190,11 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img src={aiImage} alt={t("ai_design")} />
+                <img
+                  className="card-services-image"
+                  src={aiImage}
+                  alt={t("ai_design")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("artificial_intelligence")}
                 </h3>
@@ -172,7 +203,11 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img src={dsIcon} alt={t("data_science")} />
+                <img
+                  className="card-services-image"
+                  src={dsIcon}
+                  alt={t("data_science")}
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("data_science")}
                 </h3>
@@ -253,15 +288,21 @@ const Home = ({ showPopup, hidePopup }) => {
         {/* Clients and Partners */}
         <section className="testimonies" id="testimonies">
           <div className="container spacing">
-            <h2 className="section-title text-xl text-upper text-center">
-              {t("our")} <span className="accent">{t("testimonies")}</span>
+            <h2 className="main-section-title">
+            <p className="title-first-word">{t("our")}</p> <span className="accent">{t("testimonies")}</span>
             </h2>
             <p className="section-description text-center">
               {t("testimonies_description")}
             </p>
             <div className="card-container shadow">
               <div className="card">
-                <img src={aerowiseLogo} alt="Aerowise Private Aviation" />
+                <div className="image-container">
+                  <img
+                    src={aerowiseLogo}
+                    alt="Aerowise Private Aviation"
+                    style={{ width: "250px", height: "auto" }}
+                  />
+                </div>
                 <h3 className="card-title text-left text-upper">
                   {t("perla")}
                 </h3>
@@ -270,14 +311,22 @@ const Home = ({ showPopup, hidePopup }) => {
                 </p>
               </div>
               <div className="card">
-                <img src={graphextLogo} alt="Graphext" />
+                <img
+                  className="card-clients-image"
+                  src={graphextLogo}
+                  alt="Graphext"
+                />
                 <h3 className="card-title text-upper">{t("victoriano")}</h3>
                 <p className="card-description text-sm">
                   {t("victoriano_description")}
                 </p>
               </div>
               <div className="card">
-                <img src={ctlLogo} alt="CTL Information Technology" />
+                <img
+                  className="card-clients-image"
+                  src={ctlLogo}
+                  alt="CTL Information Technology"
+                />
                 <h3 className="card-title text-left text-upper">
                   {t("juan_guido")}
                 </h3>
