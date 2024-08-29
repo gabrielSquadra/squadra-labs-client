@@ -8,7 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000000bf;
+  background: #2014497e;
+  background: linear-gradient(191deg, #07040f7e 0%, #331c477e 100%);
   padding: 2%;
 }
 
